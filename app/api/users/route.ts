@@ -5,6 +5,10 @@ export default async function handleAuthWebhookEvent(
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void> {
+  if (req.method !== "POST") {
+    res.status(405).end(); // Method Not Allowed
+    return;
+  }
   const payload: any = req.body;
   console.log("Payload: " + JSON.stringify(payload));
   const headers: any = req.headers;
