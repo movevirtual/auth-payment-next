@@ -25,7 +25,7 @@ export default function Page() {
             dividerText: "text-gray-500 dark:text-gray-200",
             formFieldLabel: "text-sm text-gray-500 dark:text-gray-300",
             formFieldInput:
-              "dark:bg-zinc-900 dark:border-slate-800 text-sm dark:text-white text-black font-medium focus:ring-1 focus:ring-slate-700 dark:focus:ring-slate-200 caret-black dark:caret-white",
+              "dark:bg-zinc-900 dark:border-slate-800 text-[15px] dark:text-white text-black font-medium focus:ring-1 focus:ring-slate-700 dark:focus:ring-slate-200 caret-black dark:caret-white",
             inputLabel: "text-sm text-gray-500 dark:text-gray-400",
             inputText:
               "border border-gray-300 dark:border-gray-700 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white",
