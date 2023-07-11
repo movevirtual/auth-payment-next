@@ -1,8 +1,9 @@
 import { SignUp } from "@clerk/nextjs";
+import Link from "next/link";
 
 export default function Page() {
   return (
-    <div className="flex h-screen items-center justify-center tracking-wider lg:h-[90vh]">
+    <div className="flex flex-col h-screen items-center justify-center tracking-wider lg:h-[90vh]">
       <SignUp
         signInUrl="/sign-in"
         redirectUrl="/"
@@ -11,7 +12,7 @@ export default function Page() {
         path="/sign-up"
         appearance={{
           elements: {
-            card: "bg-white dark:bg-transparent rounded-lg shadow-none p-10",
+            card: "bg-white dark:bg-transparent rounded-lg shadow-none px-7 py-2",
             formButtonPrimary:
               "bg-black hover:bg-slate-800 dark:bg-white text-sm dark:text-black normal-case",
             headerTitle: "text-2xl font-semibold text-black dark:text-white",
@@ -29,9 +30,9 @@ export default function Page() {
               "border border-gray-300 dark:border-gray-700 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white",
             inputTextError:
               "border border-red-500 focus:ring-red-500 focus:border-red-500",
-            footerActionText: "text-black dark:text-white font-medium",
+            footerActionText: "text-black dark:text-white font-medium hidden",
             footerActionLink:
-              "text-red-500 dark:text-red-500 font-medium focus:shadow-none",
+              "text-red-500 dark:text-red-500 font-medium focus:shadow-none hidden",
             identityPreviewAvatarBox:
               "bg-gray-200 dark:bg-gray-200 h-8 w-8 border border-slate-500/20 rounded-full",
             identityPreview:
