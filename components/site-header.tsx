@@ -16,7 +16,9 @@ export function SiteHeader() {
         <div className="nav-menu w-full flex items-center justify-between">
           <div className="logo flex items-center gap-x-2">
             <PenTool className="h-5 w-5" />
-            <h1 className="font-semibold">CODESIGN</h1>
+            <Link href={"/"} className="font-semibold">
+              CODESIGN
+            </Link>
           </div>
 
           <div className="auth-button flex items-center gap-x-2">
