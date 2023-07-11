@@ -12,10 +12,11 @@ export function SiteHeader() {
   ];
   return (
     <div>
-      <nav className="max-w-5xl mx-auto py-5">
+      <nav className="max-w-5xl mx-auto p-5">
         <div className="nav-menu w-full flex items-center justify-between">
-          <div className="logo">
-            <PenTool />
+          <div className="logo flex items-center gap-x-2">
+            <PenTool className="h-5 w-5" />
+            <h1 className="font-semibold">CODESIGN</h1>
           </div>
 
           <div className="auth-button flex items-center gap-x-2">

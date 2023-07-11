@@ -24,14 +24,15 @@ export default function Page() {
             dividerText: "text-gray-500 dark:text-gray-200",
             formFieldLabel: "text-sm text-gray-500 dark:text-gray-300",
             formFieldInput:
-              "dark:bg-zinc-900 dark:border-slate-800 focus:ring-1 focus:ring-slate-700 dark:focus:ring-slate-200 caret-black dark:caret-white",
+              "dark:bg-zinc-900 dark:border-slate-800 dark:text-white text-black font-medium focus:ring-1 focus:ring-slate-700 dark:focus:ring-slate-200 caret-black dark:caret-white",
             inputLabel: "text-sm text-gray-500 dark:text-gray-400",
             inputText:
               "border border-gray-300 dark:border-gray-700 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white",
             inputTextError:
               "border border-red-500 focus:ring-red-500 focus:border-red-500",
             footerActionText: "text-black dark:text-white font-medium",
-            footerActionLink: "text-red-500 dark:text-red-500 font-medium",
+            footerActionLink:
+              "text-red-500 dark:text-red-500 font-medium focus:shadow-none",
           },
         }}
       />
