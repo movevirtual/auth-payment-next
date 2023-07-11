@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ThemeToggle } from "./theme-toggle";
 import { Button } from "@/components/ui/button";
 import { PenTool } from "lucide-react";
+import { SignOutButton } from "@clerk/nextjs";
 
 export function SiteHeader() {
   const menu = [
@@ -30,6 +31,9 @@ export function SiteHeader() {
             </Button>
             <Button asChild>
               <Link href="/sign-up">Register</Link>
+            </Button>
+            <Button asChild variant={"destructive"}>
+              <SignOutButton />
             </Button>
             <ThemeToggle />
           </div>
