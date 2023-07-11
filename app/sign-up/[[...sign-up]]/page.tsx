@@ -46,6 +46,15 @@ export default function Page() {
           },
         }}
       />
+      <p className="font-semibold text-sm">
+        Already have an account?{" "}
+        <Link
+          className="text-red-500 hover:underline decoration-red-500 underline-offset-4"
+          href={"/sign-in"}
+        >
+          Sign in
+        </Link>
+      </p>
     </div>
   );
 }

@@ -36,6 +36,15 @@ export default function Page() {
           },
         }}
       />
+      <p className="font-semibold text-sm">
+        No account?{" "}
+        <Link
+          className="text-red-500 hover:underline decoration-red-500 underline-offset-4"
+          href={"/sign-up"}
+        >
+          Sign Up
+        </Link>
+      </p>
     </div>
   );
 }
