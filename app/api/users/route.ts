@@ -6,10 +6,9 @@ const webhookSecret: string = process.env.CLERK_WEBHOOK_SECRET || "";
 export async function POST(req: any) {
   const payload = await req.json();
   const payloadString = JSON.stringify(payload);
-  const headerPayload = headers();
-  const svixId = headerPayload.get("svix-id") || "";
-  const svixIdTimeStamp = headerPayload.get("svix-timestamp") || "";
-  const svixSignature = headerPayload.get("svix-signature") || "";
+  const svixId = req.headers.get("svix-id");
+  const svixIdTimeStamp = req.headers.get("svix-timestamp");
+  const svixSignature = req.headers.get("svix-signature");
   if (!svixId || !svixIdTimeStamp || !svixSignature) {
     console.log("svixId", svixId);
     console.log("svixIdTimeStamp", svixIdTimeStamp);
