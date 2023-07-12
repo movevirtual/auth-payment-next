@@ -1,6 +1,5 @@
 import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
-import { buffer } from "node:stream/consumers";
 import { Webhook } from "svix";
 
 export async function GET() {
@@ -19,9 +18,10 @@ export const config = {
 const secret: string | undefined = process.env.CLERK_WEBHOOK_SECRET;
 
 export async function POST(req: NextApiRequest) {
-  const payload: any = (await buffer(req)).toString();
+  const payload: any = await req.body;
   const headers: any = req.headers;
-
+  console.log(payload);
+  console.log(headers);
   const wh: Webhook = new Webhook(secret || "");
   let event: any;
   try {
