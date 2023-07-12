@@ -24,7 +24,7 @@ export function SiteHeader() {
 
           <div className="auth-button flex items-center gap-x-2">
             <Button variant={"link"}>
-              <Link href="/pricing">Pricing</Link>
+              <Link href="/">Pricing</Link>
             </Button>
             <Button asChild variant={"outline"}>
               <Link href="/sign-in">Login</Link>
