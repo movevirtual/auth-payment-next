@@ -2,6 +2,8 @@ import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
 import { Webhook } from "svix";
 
+export const runtime = "nodejs";
+
 export async function GET() {
   return NextResponse.json(
     { Success: "You are in the wrong direction 😉" },
