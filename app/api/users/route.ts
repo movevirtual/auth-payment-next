@@ -1,14 +1,12 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
+import { NextApiRequest } from "next";
 import { Webhook } from "svix";
 
-export default async function handleAuthWebhookEvent(
-  req: NextApiRequest,
-  res: NextApiResponse
-): Promise<void> {
-  if (req.method !== "POST") {
-    res.status(405).end(); // Method Not Allowed
-    return;
-  }
+export async function GET(request: Request) {
+  return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+}
+
+export async function POST(req: NextApiRequest) {
   const payload: any = req.body;
   console.log("Payload: " + JSON.stringify(payload));
   const headers: any = req.headers;
@@ -22,12 +20,15 @@ export default async function handleAuthWebhookEvent(
       const userEmailAdress: string =
         event.data.email_addresses[0].email_address;
       console.log("User created: " + userEmailAdress);
-      res.status(200).send("User created");
+      return NextResponse.json({ error: "User created" }, { status: 200 });
     } else {
-      res.status(200).send("User not created");
+      return NextResponse.json({ error: "User not created" }, { status: 500 });
     }
   } catch (err: any) {
     console.error(err);
-    res.status(400).send("Invalid signature");
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }
