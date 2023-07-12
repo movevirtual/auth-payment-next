@@ -1,12 +1,11 @@
 import { NextResponse } from "next/server";
-import { NextApiRequest } from "next";
 import { Webhook } from "svix";
 
 export async function GET(request: Request) {
   return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
 }
 
-export async function POST(req: NextApiRequest) {
+export async function POST(req: Request) {
   const payload: any = req.body;
   console.log("Payload: " + JSON.stringify(payload));
   const headers: any = req.headers;
