@@ -1,7 +1,7 @@
+import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
+import { buffer } from "node:stream/consumers";
 import { Webhook } from "svix";
-import { buffer } from "stream/consumers";
-import { NextApiRequest, NextApiResponse } from "next";
 
 export async function GET() {
   return NextResponse.json(
@@ -10,7 +10,24 @@ export async function GET() {
   );
 }
 
-export async function POST(req: Request) {
-  const body = await req.json();
-  console.log(body);
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+const secret: string | undefined = process.env.CLERK_WEBHOOK_SECRET;
+
+export async function POST(req: NextApiRequest) {
+  const payload: any = (await buffer(req)).toString();
+  const headers: any = req.headers;
+
+  const wh: Webhook = new Webhook(secret || "");
+  let event: any;
+  try {
+    event = wh.verify(payload, headers);
+    console.log(event);
+  } catch (err) {
+    NextResponse.json({ Error: "Invalid webhook signature" }, { status: 400 });
+  }
 }
