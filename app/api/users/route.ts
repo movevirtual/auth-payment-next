@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
 import { Webhook } from "svix";
 
-export async function GET(request: Request) {
-  return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+export async function GET() {
+  return NextResponse.json(
+    { Success: "You are in the wrong direction 😉" },
+    { status: 200 }
+  );
 }
 
 export async function POST(req: Request) {
