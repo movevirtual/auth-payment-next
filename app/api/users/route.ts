@@ -1,6 +1,4 @@
 import { Webhook } from "svix";
-import { headers } from "next/headers";
-import { NextResponse } from "next/server";
 const webhookSecret: string = process.env.CLERK_WEBHOOK_SECRET || "";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
@@ -38,8 +36,20 @@ export async function POST(req: any) {
   try {
     evt = wh.verify(payloadString, svixHeaders) as Event;
     console.log("Successfully verified event");
-    console.log("Event: ", evt.data.id);
-    console.log("Event: ", evt.data.email_addresses[0].email_address);
+    console.log("userid: ", evt.data.id);
+    console.log("email: ", evt.data.email_addresses[0].email_address);
+    const eventType: EventType = evt.type as EventType;
+    console.log("eventType: ", eventType);
+
+    if (eventType === "user.created") {
+      const user = await prisma.user.create({
+        data: {
+          userid: evt.data.id,
+          email: evt.data.email_addresses[0].email_address,
+        },
+      });
+      console.log("user: ", user);
+    }
     return new Response("Success", {
       status: 200,
     });
@@ -50,3 +60,5 @@ export async function POST(req: any) {
     });
   }
 }
+
+type EventType = "user.created";
