@@ -2,6 +2,17 @@ import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 const webhookSecret: string = process.env.CLERK_WEBHOOK_SECRET || "";
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+
+interface Event {
+  data: {
+    id: string;
+    email_addresses: { email_address: string }[];
+    created_at: number;
+  };
+  type: string;
+}
 
 export async function POST(req: any) {
   const payload = await req.json();
@@ -27,7 +38,8 @@ export async function POST(req: any) {
   try {
     evt = wh.verify(payloadString, svixHeaders) as Event;
     console.log("Successfully verified event");
-    console.log("Event: ", evt);
+    console.log("Event: ", evt.data.id);
+    console.log("Event: ", evt.data.email_addresses[0].email_address);
     return new Response("Success", {
       status: 200,
     });
