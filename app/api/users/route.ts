@@ -32,7 +32,7 @@ export async function POST(req: any) {
     "svix-signature": svixSignature,
   };
   const wh = new Webhook(webhookSecret);
-  let evt: Event | null = null;
+  let evt: any | null = null;
   try {
     evt = wh.verify(payloadString, svixHeaders) as Event;
     console.log("Successfully verified event");
