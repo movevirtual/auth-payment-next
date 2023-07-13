@@ -1,7 +1,7 @@
 import { Webhook } from "svix";
-const webhookSecret: string = process.env.CLERK_WEBHOOK_SECRET || "";
 import { PrismaClient } from "@prisma/client";
-import { error } from "console";
+
+const webhookSecret: string = process.env.CLERK_WEBHOOK_SECRET || "";
 const prisma = new PrismaClient();
 
 interface Event {
@@ -23,7 +23,7 @@ export async function POST(req: any) {
     console.log("svixId", svixId);
     console.log("svixIdTimeStamp", svixIdTimeStamp);
     console.log("svixSignature", svixSignature);
-    return new Response("Error occured", {
+    return new Response("Error occurred", {
       status: 400,
     });
   }
@@ -39,7 +39,13 @@ export async function POST(req: any) {
     console.log("Successfully verified event");
     console.log("evt: ", evt);
     console.log("userid: ", evt.data.id);
-    console.log("email: ", evt.data.email_addresses[0].email_address);
+
+    if (evt.data.email_addresses && evt.data.email_addresses.length > 0) {
+      console.log("email: ", evt.data.email_addresses[0].email_address);
+    } else {
+      console.log("No email addresses found");
+    }
+
     const eventType: EventType = evt.type as EventType;
     console.log("eventType: ", eventType);
 
@@ -55,9 +61,9 @@ export async function POST(req: any) {
     return new Response("Success", {
       status: 200,
     });
-  } catch (_) {
-    console.log("error", _);
-    return new Response("Error occured", {
+  } catch (error) {
+    console.log("error", error);
+    return new Response("Error occurred", {
       status: 400,
     });
   }
