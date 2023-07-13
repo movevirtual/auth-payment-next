@@ -36,6 +36,7 @@ export async function POST(req: any) {
   try {
     evt = wh.verify(payloadString, svixHeaders) as Event;
     console.log("Successfully verified event");
+    console.log("evt: ", evt);
     console.log("userid: ", evt.data.id);
     console.log("email: ", evt.data.email_addresses[0].email_address);
     const eventType: EventType = evt.type as EventType;
