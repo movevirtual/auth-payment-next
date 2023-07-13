@@ -37,14 +37,6 @@ export async function POST(req: any) {
   try {
     evt = wh.verify(payloadString, svixHeaders) as Event;
     console.log("Successfully verified event");
-    console.log("evt: ", evt);
-    console.log("userid: ", evt.data.id);
-
-    if (evt.data.email_addresses && evt.data.email_addresses.length > 0) {
-      console.log("email: ", evt.data.email_addresses[0].email_address);
-    } else {
-      console.log("No email addresses found");
-    }
 
     const eventType: EventType = evt.type as EventType;
     console.log("eventType: ", eventType);
@@ -57,9 +49,30 @@ export async function POST(req: any) {
         },
       });
       console.log("user: ", user);
+
+      return new Response("User created successfully", {
+        status: 200,
+      });
     }
-    return new Response("Success", {
-      status: 200,
+
+    if (eventType === "session.created") {
+      console.log("session created");
+
+      return new Response("Session created successfully", {
+        status: 200,
+      });
+    }
+
+    if (eventType === "session.ended") {
+      console.log("session ended");
+
+      return new Response("Session ended successfully", {
+        status: 200,
+      });
+    }
+
+    return new Response("Unknown event type", {
+      status: 400,
     });
   } catch (error) {
     console.log("error", error);
@@ -69,4 +82,9 @@ export async function POST(req: any) {
   }
 }
 
-type EventType = "user.created" | "user.updated" | "*";
+type EventType =
+  | "user.created"
+  | "user.updated"
+  | "session.ended"
+  | "session.created"
+  | "*";
