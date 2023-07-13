@@ -18,7 +18,9 @@ export default function Authenticated() {
     <div>
       {isSignedIn ? (
         <div className="flex items-center gap-x-5">
-          <img
+          <Image
+            height={32}
+            width={32}
             className="h-8 w-8 rounded-full drop-shadow-md ring ring-slate-500/40 dark:ring-slate-500/20"
             src={user?.imageUrl}
             alt=""
