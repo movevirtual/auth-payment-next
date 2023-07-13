@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { Inter } from "next/font/google";
 import { Space_Grotesk } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
@@ -29,6 +30,17 @@ export default function RootLayout({ children }: RootLayoutProps) {
               <div className="flex-1">{children}</div>
             </div>
           </ThemeProvider>
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              className:
+                "bg-white dark:bg-zinc-800 font-semibold text-sm text-[#713200] dark:text-white rounded-full border border-[#713200] dark:border-white",
+              style: {
+                borderRadius: "50px",
+                padding: "7px 10px",
+              },
+            }}
+          />
         </body>
       </html>
     </ClerkProvider>

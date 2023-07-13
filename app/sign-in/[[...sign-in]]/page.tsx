@@ -6,11 +6,6 @@ export default function Page() {
   return (
     <div className="flex flex-col h-screen items-center justify-center tracking-wider lg:h-[90vh]">
       <SignIn
-        signUpUrl="/sign-up"
-        redirectUrl="/"
-        afterSignUpUrl="/"
-        routing="hash"
-        path="/sign-in"
         appearance={{
           elements: {
             card: "bg-white dark:bg-transparent rounded-lg shadow-none py-2 px-7",
@@ -31,20 +26,25 @@ export default function Page() {
               "border border-gray-300 dark:border-gray-700 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white",
             inputTextError:
               "border border-red-500 focus:ring-red-500 focus:border-red-500",
-            footerActionText: "text-black dark:text-white font-medium hidden",
-            footerActionLink: "hidden",
+            footerActionText: "text-black dark:text-white font-medium",
+            footerActionLink:
+              "text-red-500 dark:text-red-500 font-semibold focus:shadow-none",
+            identityPreviewAvatarBox:
+              "bg-gray-200 dark:bg-gray-200 h-8 w-8 border border-slate-500/20 rounded-full",
+            identityPreview:
+              "bg-gray-200 dark:bg-gray-100 border-slate-500/50 rounded-full px-2.5 py-1.5",
+            identityPreviewText: "text-black dark:text-black font-medium",
+            identityPreviewEditButton: "text-red-500",
+            formHeaderTitle:
+              "text-2xl font-semibold text-black dark:text-white",
+            formHeaderSubtitle: "text-sm text-gray-500 dark:text-gray-400",
+            formResendCodeLink: "text-red-500 dark:text-red-500 font-semibold",
+            verificationLinkStatusIconBox: "bg-gray-200 dark:bg-zinc-800",
+            verificationLinkStatusIcon: "text-black dark:text-white",
+            verificationLinkStatusText: "text-black dark:text-white",
           },
         }}
       />
-      <p className="font-semibold text-sm">
-        No account?{" "}
-        <Link
-          className="text-red-500 hover:underline decoration-red-500 underline-offset-4"
-          href={"/sign-up"}
-        >
-          Sign Up
-        </Link>
-      </p>
     </div>
   );
 }

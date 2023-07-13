@@ -1,15 +1,9 @@
 import { SignUp } from "@clerk/nextjs";
-import Link from "next/link";
 
 export default function Page() {
   return (
     <div className="flex flex-col h-screen items-center justify-center tracking-wider lg:h-[90vh]">
       <SignUp
-        signInUrl="/sign-in"
-        redirectUrl="/"
-        afterSignUpUrl="/"
-        routing="path"
-        path="/sign-up"
         appearance={{
           elements: {
             card: "bg-white dark:bg-transparent rounded-lg shadow-none px-7 py-2",
@@ -30,9 +24,9 @@ export default function Page() {
               "border border-gray-300 dark:border-gray-700 focus:ring-black dark:focus:ring-white focus:border-black dark:focus:border-white",
             inputTextError:
               "border border-red-500 focus:ring-red-500 focus:border-red-500",
-            footerActionText: "text-black dark:text-white font-medium hidden",
+            footerActionText: "text-black dark:text-white font-medium",
             footerActionLink:
-              "text-red-500 dark:text-red-500 font-medium focus:shadow-none hidden",
+              "text-red-500 dark:text-red-500 font-semibold focus:shadow-none",
             identityPreviewAvatarBox:
               "bg-gray-200 dark:bg-gray-200 h-8 w-8 border border-slate-500/20 rounded-full",
             identityPreview:
@@ -46,15 +40,6 @@ export default function Page() {
           },
         }}
       />
-      <p className="font-semibold text-sm">
-        Already have an account?{" "}
-        <Link
-          className="text-red-500 hover:underline decoration-red-500 underline-offset-4"
-          href={"/sign-in"}
-        >
-          Sign in
-        </Link>
-      </p>
     </div>
   );
 }
