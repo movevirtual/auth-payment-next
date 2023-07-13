@@ -1,6 +1,7 @@
 import { Webhook } from "svix";
 const webhookSecret: string = process.env.CLERK_WEBHOOK_SECRET || "";
 import { PrismaClient } from "@prisma/client";
+import { error } from "console";
 const prisma = new PrismaClient();
 
 interface Event {
@@ -55,7 +56,7 @@ export async function POST(req: any) {
       status: 200,
     });
   } catch (_) {
-    console.log("error");
+    console.log("error", _);
     return new Response("Error occured", {
       status: 400,
     });
