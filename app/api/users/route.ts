@@ -32,7 +32,7 @@ export async function POST(req: any) {
     "svix-signature": svixSignature,
   };
   const wh = new Webhook(webhookSecret);
-  let evt: any | null = null;
+  let evt: Event | null = null;
   try {
     evt = wh.verify(payloadString, svixHeaders) as Event;
     console.log("Successfully verified event");
@@ -62,4 +62,4 @@ export async function POST(req: any) {
   }
 }
 
-type EventType = "user.created";
+type EventType = "user.created" | "user.updated" | "*";
