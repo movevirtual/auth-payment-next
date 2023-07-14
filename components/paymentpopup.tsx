@@ -1,53 +1,40 @@
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
+import { PenTool } from "lucide-react";
 
-export function AlertDialogDemo() {
+async function handlePayNow() {
+  const res = await fetch("/api/checkout", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const checkoutUrl = await res.json();
+
+  return checkoutUrl;
+}
+
+export default async function AlertDialogDemo() {
+  const handleClick = async (e: any) => {
+    e.preventDefault();
+    const result = await handlePayNow();
+    const checkoutUrlPath = result.url;
+    window.location.href = checkoutUrlPath;
+  };
   return (
-    <AlertDialog>
-      <div className="max-w-md mx-auto flex flex-col items-center justify-center gap-y-5 border rounded-lg p-10">
-        <h1 className=" text-primary text-xl font-bold">
-          Your new account is being created
-        </h1>
-        <p className=" dark:text-slate-500/50 text-slate-600/80 text-sm font-medium ">
-          {" "}
-          Thank you, we will redirect you to the payment page in a few seconds
-          and after the successful payment, you will be redirected to the
-          dashboard.
-        </p>
-        <AlertDialogTrigger asChild>
-          <Button className="w-full" variant="outline">
-            Continue
-          </Button>
-        </AlertDialogTrigger>
+    <div className="max-w-md mx-auto flex flex-col items-center justify-center gap-y-5 border rounded-lg p-10">
+      <div className="border border-slate-500/50 rounded-full p-5">
+        <PenTool className="h-7 w-7 text-primary" />
       </div>
-
-      <AlertDialogContent className="gap-y-7 max-w-md mx-auto">
-        <AlertDialogHeader>
-          <AlertDialogTitle>
-            We are redirecting you to the payment page
-          </AlertDialogTitle>
-          <AlertDialogDescription>
-            You will be redirected to the dahsboard after the successful
-            payment. Happy journey!
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter className="mx-auto w-full gap-x-2">
-          <AlertDialogCancel className="w-full bg-destructive text-white">
-            Cancel
-          </AlertDialogCancel>
-          <AlertDialogAction className="w-full">Continue</AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
+      <h1 className="text-primary text-xl font-bold">
+        Your new account has been created
+      </h1>
+      <Button
+        className="w-full text-base font-bold"
+        variant="destructive"
+        onClick={handleClick}
+      >
+        Pay Now
+      </Button>
+    </div>
   );
 }

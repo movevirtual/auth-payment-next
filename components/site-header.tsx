@@ -50,7 +50,7 @@ export async function SiteHeader() {
         <div className="nav-menu w-full flex items-center justify-between">
           <div className="logo flex items-center gap-x-2">
             <PenTool className="h-5 w-5" />
-            <Link href={"/"} className="font-semibold">
+            <Link href={"/"} className="font-semibold hidden lg:block">
               CODESIGN
             </Link>
           </div>

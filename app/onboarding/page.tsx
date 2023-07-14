@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { AlertDialogDemo } from "@/components/paymentpopup";
+import AlertDialogDemo from "@/components/paymentpopup";
 import { AlertDialogDemoAlreadyOnboarded } from "@/components/onboarded";
 
 export default function Home() {
