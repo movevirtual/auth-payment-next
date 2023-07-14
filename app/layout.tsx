@@ -6,6 +6,7 @@ import { Inter } from "next/font/google";
 import { Space_Grotesk } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "react-hot-toast";
+import { Provider } from "react-wrap-balancer";
 
 const inter = Inter({ subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
@@ -27,7 +28,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="relative flex min-h-screen flex-col">
               <SiteHeader />
-              <div className="flex-1">{children}</div>
+              <Provider>
+                <div className="flex-1">{children}</div>
+              </Provider>
             </div>
           </ThemeProvider>
           <Toaster
