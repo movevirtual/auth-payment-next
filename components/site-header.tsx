@@ -30,9 +30,12 @@ export default function Authenticated() {
           </Button>
         </div>
       ) : (
-        <div>
-          <Button asChild>
+        <div className="flex items-center gap-x-2">
+          <Button asChild variant={"outline"}>
             <Link href="/sign-in">Login</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/sign-in">Get Started</Link>
           </Button>
         </div>
       )}
