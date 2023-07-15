@@ -37,6 +37,7 @@ export default function Page() {
               "text-2xl font-semibold text-black dark:text-white",
             formHeaderSubtitle: "text-sm text-gray-500 dark:text-gray-400",
             formResendCodeLink: "text-red-500 dark:text-red-500 font-semibold",
+            otpCodeFieldInput: "dark:border-white dark:text-white",
           },
         }}
       />

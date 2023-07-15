@@ -42,6 +42,7 @@ export default function Page() {
             verificationLinkStatusIconBox: "bg-gray-200 dark:bg-zinc-800",
             verificationLinkStatusIcon: "text-black dark:text-white",
             verificationLinkStatusText: "text-black dark:text-white",
+            otpCodeFieldInput: "dark:border-white dark:text-white",
           },
         }}
       />

@@ -30,7 +30,6 @@ export async function POST(request: NextRequest) {
 
   try {
     evt = stripe.webhooks.constructEvent(payload, signature, webhookSecret);
-    console.log("Successfully verified event");
 
     const eventType: StripeTypes.Event["type"] = evt.type;
 
@@ -38,7 +37,29 @@ export async function POST(request: NextRequest) {
       const session = evt.data.object as StripeTypes.Checkout.Session;
 
       const userEmail = session.customer_email;
-      console.log("userEmail: ", userEmail);
+
+      if (!userEmail) {
+        console.log("User email not found");
+        return new NextResponse("Error occurred", {
+          status: 400,
+        });
+      }
+
+      const user = await prisma.user.update({
+        where: {
+          email: userEmail,
+        },
+        data: {
+          subscribed: true,
+        },
+      });
+
+      if (!user) {
+        console.log("User not found");
+        return new NextResponse("Error occurred", {
+          status: 400,
+        });
+      }
     }
 
     return new NextResponse("Event type not handled", {

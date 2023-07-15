@@ -10,7 +10,7 @@ export async function POST() {
   }
 
   const userEmail = user.emailAddresses[0].emailAddress;
-  console.log("userEmail: ", userEmail);
+  console.log("userEmail in checkout: ", userEmail);
 
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "", {
     apiVersion: "2022-11-15",
