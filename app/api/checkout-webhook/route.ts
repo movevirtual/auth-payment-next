@@ -1,31 +1,30 @@
 import Stripe from "stripe";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: any) {
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "", {
-    apiVersion: "2022-11-15",
-  });
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "", {
+  apiVersion: "2022-11-15",
+});
 
-  const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET ?? "";
+const stripeWebhookSecret: string = process.env.STRIPE_WEBHOOK_SECRET!;
 
-  const payload = await req.json();
-  console.log("payload", payload);
-  const payloadString = JSON.stringify(payload);
-  const stripeSignature = req.headers["stripe-signature"];
-  console.log("stripeSignature", stripeSignature);
+export async function POST(request: NextRequest) {
+  const payload = await request.text();
+  const signature = request.headers.get("stripe-signature")!;
 
-  if (!stripeSignature) {
-    console.log("stripeSignature", stripeSignature);
+  if (!stripeWebhookSecret) {
+    console.log("STRIPE_WEBHOOK_SECRET is not set");
     return new Response("Error occurred", {
       status: 400,
     });
   }
 
   let evt: Stripe.Event | null = null;
+
   try {
     evt = stripe.webhooks.constructEvent(
-      payloadString,
-      stripeSignature,
-      endpointSecret
+      payload,
+      signature,
+      stripeWebhookSecret
     );
     console.log("Successfully verified event");
     console.log("evt", evt);
