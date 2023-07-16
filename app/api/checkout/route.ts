@@ -33,7 +33,8 @@ export async function POST() {
       },
     ],
     success_url:
-      process.env.NEXT_PUBLIC_WEBSITE_URL + `?session_id={CHECKOUT_SESSION_ID}`,
+      process.env.NEXT_PUBLIC_WEBSITE_URL +
+      `/dashboard?session_id={CHECKOUT_SESSION_ID}`,
 
     cancel_url: process.env.NEXT_PUBLIC_WEBSITE_URL,
     customer_email: userEmail,
