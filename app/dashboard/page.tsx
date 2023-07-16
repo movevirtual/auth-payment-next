@@ -41,7 +41,7 @@ function page() {
           <Dropzone onDrop={(acceptedFiles) => console.log(acceptedFiles)}>
             {({ getRootProps, getInputProps }) => (
               <div>
-                <section className="p-20 w-full border border-dashed hover:border-green-500 flex items-center justify-center">
+                <section className="p-20 w-full border border-dashed hover:border-green-500 flex items-center justify-center cursor-pointer">
                   <div
                     className="flex flex-col gap-y-2 items-center justify-center"
                     {...getRootProps()}
