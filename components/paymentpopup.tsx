@@ -23,12 +23,6 @@ export default async function AlertDialogDemo() {
   return (
     <div className="max-w-md mx-auto flex flex-col items-center justify-center gap-y-5 border rounded-lg p-10">
       <div className="border border-slate-500/50 rounded-full p-5">
-        <img
-          src={
-            "https://lottie.host/355cbdd4-c82e-4618-a807-122ef6bf0a37/yyRUnRilPT.json"
-          }
-          alt=""
-        />
         <PenTool className="h-7 w-7 text-primary" />
       </div>
       <h1 className="text-primary text-xl font-bold">

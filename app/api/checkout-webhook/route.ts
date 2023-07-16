@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    return new NextResponse("Event type not handled", {
+    return new NextResponse("Success", {
       status: 200,
     });
   } catch (err: unknown) {

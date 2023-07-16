@@ -20,9 +20,6 @@ export async function POST(req: any) {
   const svixIdTimeStamp = req.headers.get("svix-timestamp");
   const svixSignature = req.headers.get("svix-signature");
   if (!svixId || !svixIdTimeStamp || !svixSignature) {
-    console.log("svixId", svixId);
-    console.log("svixIdTimeStamp", svixIdTimeStamp);
-    console.log("svixSignature", svixSignature);
     return new Response("Error occurred", {
       status: 400,
     });
@@ -48,7 +45,6 @@ export async function POST(req: any) {
           email: evt.data.email_addresses[0].email_address,
         },
       });
-      console.log("user: ", user);
 
       return new Response("User created successfully", {
         status: 200,
